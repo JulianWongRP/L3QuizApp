@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, Image, ScrollView, Button, Alert } from 'react-native';
+import { View, Text, Image, ScrollView, Button, Alert, StyleSheet} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
+
 const Opts = ({ onValueChange }) => {
+    const styles = StyleSheet.create({
+        container: {
+            borderWidth: 3,
+            borderColor: 'blue'
+        }
+    })
     return (
-        <View>
+        <View style={styles.container}>
             <RNPickerSelect
                 onValueChange={onValueChange}
                 items={[
@@ -27,11 +34,23 @@ const Opts = ({ onValueChange }) => {
 };
 
 const TextBox = ({ image, onAnswerSelect }) => {
+    const styles = StyleSheet.create({
+        container: {
+            textAlign: 'center',
+            fontSize: 20,
+            fontWeight: 'bold',
+            margin: 10
+        },
+
+        img:{
+            maxWidth: "100%"
+        }
+    })
     return (
         <View>
-            <Text>What Animal is this?</Text>
+            <Text style={styles.container}>What Animal is this?</Text>
             <Opts onValueChange={onAnswerSelect} />
-            <Image source={image} style={{ width: 450, height: 450 }} />
+            <Image source={image} style={[styles.img, {width: 450, height: 450 }]} />
         </View>
     );
 };
@@ -57,14 +76,36 @@ const App = () => {
         Alert.alert(`You got ${score} out of 3 correct!`);
     };
 
+    const styles = StyleSheet.create({
+        title: {
+            fontSize: 50,
+            fontWeight: 'bold',
+            textAlign: 'center',
+            margin: 20
+        },
+
+        container: {
+            borderWidth: 1,
+            borderColor: 'black',
+            margin: 10
+        }
+    })
+
     return (
         <View>
             <ScrollView>
                 <Text></Text>
                 <Text></Text>
-                <TextBox image={require('./img/deer.jpg')} onAnswerSelect={(value) => setQ1(value)} />
-                <TextBox image={require('./img/kingfisher.jpg')} onAnswerSelect={(value) => setQ2(value)} />
-                <TextBox image={require('./img/penguin.jpg')} onAnswerSelect={(value) => setQ3(value)} />
+                <Text style={styles.title}> Animal Quiz</Text>
+                <View style={styles.container}>
+                    <TextBox image={require('./img/deer.jpg')} onAnswerSelect={(value) => setQ1(value)} />
+                </View>
+                <View style={styles.container}>
+                    <TextBox image={require('./img/kingfisher.jpg')} onAnswerSelect={(value) => setQ2(value)} />
+                </View>
+                <View style={styles.container}>
+                    <TextBox image={require('./img/penguin.jpg')} onAnswerSelect={(value) => setQ3(value)} />
+                </View>
                 <Button title="Submit Answers" color="green" onPress={handleSubmit} />
             </ScrollView>
         </View>
