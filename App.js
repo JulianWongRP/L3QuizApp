@@ -7,7 +7,8 @@ const Opts = ({ onValueChange }) => {
     const styles = StyleSheet.create({
         container: {
             borderWidth: 3,
-            borderColor: 'blue'
+            borderColor: 'blue',
+            margin: 10
         }
     })
     return (
@@ -39,7 +40,8 @@ const TextBox = ({ image, onAnswerSelect }) => {
             textAlign: 'center',
             fontSize: 20,
             fontWeight: 'bold',
-            margin: 10
+            margin: 20,
+            color: "red"
         },
 
         img:{
@@ -81,13 +83,16 @@ const App = () => {
             fontSize: 50,
             fontWeight: 'bold',
             textAlign: 'center',
-            margin: 20
+            margin: 20,
+
         },
 
         container: {
             borderWidth: 1,
             borderColor: 'black',
-            margin: 10
+            margin: 10,
+            borderRadius: 10,
+
         }
     })
 
